@@ -3,11 +3,13 @@ int main(){
     backtofirst:
     int array[14]; // we are creating an array of 14 integers, most of which are used to store digits.
     char letter;   
-    do{
         std::cout<<"Enter the four digit number: ";
         std::cin>>array[0]; //the number we accept from user.
-    }
-    while(array[0]<1000 || array[0]>9999);// we are accepting only 4 digit numbers.
+     if (array[0]<0 || array[0] >9999)
+     {
+         std::cout<<"Invalid input. Try again.";
+         goto backtofirst;
+     }
    std::cout<<"Do you want to encrypt or decrypt the number? "<<std::endl;
    std::cout<<"Type Y/y for encryption or N/n for decryption: ";
    std::cin>>letter;
