@@ -3,15 +3,17 @@ int main(){
     backtofirst:
     int array[14]; // we are creating an array of 14 integers, most of which are used to store digits.
     char letter;   
-    do{
         std::cout<<"Enter the four digit number: ";
         std::cin>>array[0]; //the number we accept from user.
+    if (array[0]<0 || array[0]>9999)
+    {
+        std::cout<<"Invalid input. Try again.";
+        goto backtofirst;
     }
-    while(array[0]<1000 || array[0]>9999);// we are accepting only 4 digit numbers.
    std::cout<<"Do you want to encrypt or decrypt the number? "<<std::endl;
    std::cout<<"Type Y/y for encryption or N/n for decryption: ";
    std::cin>>letter;
-    if(x == 'Y' || x == 'y') // if user wants to encrypt.
+    if(letter == 'Y' || letter == 'y') // if user wants to encrypt.
     {
         // we extract the individual digits from the number we accepted in the next 4 lines of code.
        array[1]=array[0] / 1000;
@@ -31,7 +33,7 @@ int main(){
        array[13] = (array[9] * 1000) + (array[10] * 100)+(array[11] * 10) + array[12]; // we are displaying the number in four digit form.
        std::cout<<"The encrypted number is "<<array[13]<<std::endl;
     }
-    else if (x == 'N' || x == 'n') //if user wants to decrypt instead.
+    else if (letter == 'N' || letter == 'n') //if user wants to decrypt instead.
     {
         // we extract the individual digits from the number we accepted, in the next 4 lines of code.
        array[1] = array[0] / 1000;
@@ -54,7 +56,7 @@ int main(){
     std::cout<<"Do you want to continue? "<<std::endl;
     std::cout<<"Type Y/y for yes or N/n for no: ";
     std::cin>>letter;
-    if (x== 'Y' || x == 'y ') // if user wants to continue
+    if (letter == 'Y' || letter == 'y ') // if user wants to continue
     goto backtofirst; // repeat the process of accepting a number from the user.
     else // if user doesn't want to continue
     std::cout<<"Thank you for using this program!"<<std::endl;
