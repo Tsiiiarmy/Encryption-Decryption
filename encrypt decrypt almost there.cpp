@@ -1,68 +1,62 @@
 #include<iostream>
 int main(){
     backtofirst:
-    int n,a,b,c,d,e,f,g,h,i,j,k,l,m; // n is for the integer, a,b,c,d is for the individual digits of that integer,i is to show the encrypted number. 
-    char x;   
+    int array[14]; // we are creating an array of 14 integers, most of which are used to store digits.
+    char letter;   
     do{
         std::cout<<"Enter the four digit number: ";
-        std::cin>>n;
+        std::cin>>array[0]; //the number we accept from user.
     }
-    while(n<1000 || n>9999);
+    while(array[0]<1000 || array[0]>9999);// we are accepting only 4 digit numbers.
    std::cout<<"Do you want to encrypt or decrypt the number? "<<std::endl;
    std::cout<<"Type Y/y for encryption or N/n for decryption: ";
-   std::cin>>x;
-    if(x=='Y' || x=='y')
+   std::cin>>letter;
+    if(x == 'Y' || x == 'y') // if user wants to encrypt.
     {
-       a=n/1000;
-       std::cout<<"The first digit of "<<n<<" is "<<a<<std::endl;
-       b=(n/100)%10;
-       std::cout<<"The second digit of "<<n<<" is "<<b<<std::endl;
-       c=(n/10)%10;
-       std::cout<<"The third digit of "<<n<<" is "<<c<<std::endl;
-       d=n%10;
-       std::cout<<"The fourth digit of "<<n<<" is "<<d<<std::endl;
-       e=(a+7)%10;
-       f=(b+7)%10;
-       g=(c+7)%10;
-       h=(d+7)%10;
-       l=e;
-       m=f;
-       j=g;
-       k=h;
-       std::cout<<"The modulus "<<e<<" "<<f<<" "<<g<<" "<<h<<std::endl;
-       std::cout<<"After the shuffle "<<j<<" "<<k<<" "<<l<<" "<<m<<std::endl;
-       i=(j*1000)+(k*100)+(l*10)+m;
-       std::cout<<"The encrypted number is "<<i<<std::endl;
+        // we extract the individual digits from the number we accepted in the next 4 lines of code.
+       array[1]=array[0] / 1000;
+       array[2]=(array[0] / 100)%10;
+       array[3]=(array[0] / 10)%10;
+       array[4]=array[0] % 10;
+        // we encrypt the number with the algorithm we are given in the next 4 lines of code.
+       array[5]=(array[1] + 7)%10;
+       array[6]=(array[2] + 7)%10;
+       array[7]=(array[3] + 7)%10;
+       array[8]=(array[4] + 7)%10;
+       // we shuffle the numbers according to the algorithm.
+       array[11] = array[5];
+       array[12] = array[6];
+       array[9] = array[7];
+       array[10] = array[8];
+       array[13] = (array[9] * 1000) + (array[10] * 100)+(array[11] * 10) + array[12]; // we are displaying the number in four digit form.
+       std::cout<<"The encrypted number is "<<array[13]<<std::endl;
     }
-    else if (x=='N' || x=='n')
+    else if (x == 'N' || x == 'n') //if user wants to decrypt instead.
     {
-       a=n/1000;
-       std::cout<<"The first digit of "<<n<<" is "<<a<<std::endl;
-       b=(n/100)%10;
-       std::cout<<"The second digit of "<<n<<" is "<<b<<std::endl;
-       c=(n/10)%10;
-       std::cout<<"The third digit of "<<n<<" is "<<c<<std::endl;
-       d=n%10;
-       std::cout<<"The fourth digit of "<<n<<" is "<<d<<std::endl;
-       e=(a+3)%10;
-       f=(b+3)%10;
-       g=(c+3)%10;
-       h=(d+3)%10;
-       l=e;
-       m=f;
-       j=g;
-       k=h;
-       std::cout<<"The modulus "<<e<<" "<<f<<" "<<g<<" "<<h<<std::endl;
-       std::cout<<"After the shuffle "<<j<<" "<<k<<" "<<l<<" "<<m<<std::endl;
-       i=(j*1000)+(k*100)+(l*10)+m;
-       std::cout<<"The original number is "<<i<<std::endl;
+        // we extract the individual digits from the number we accepted, in the next 4 lines of code.
+       array[1] = array[0] / 1000;
+       array[2] = (array[0] / 100) % 10;
+       array[3] = (array[0] / 10) % 10;
+       array[4] = array[0] % 10;
+        // the next four lines is the decryption algorithm for our code.
+       array[5] = (array[1] + 3) % 10; 
+       array[6] = (array[2] + 3) % 10;
+       array[7] = (array[3] + 3) % 10;
+       array[8] = (array[4] + 3) % 10;
+       // the shuffling is reverted when we decrypt the number.
+       array[11] = array[5];
+       array[12] = array[6];
+       array[9] = array[7];
+       array[10] = array[8];
+       array[13] = (array[9]*1000)+(array[10]*100)+(array[11]*10)+array[12];
+       std::cout<<"The original number is "<<array[13]<<std::endl;
     }
     std::cout<<"Do you want to continue? "<<std::endl;
     std::cout<<"Type Y/y for yes or N/n for no: ";
-    std::cin>>x;
-    if (x=='Y' || x=='y')
-    goto backtofirst;
-    else
+    std::cin>>letter;
+    if (x== 'Y' || x == 'y ') // if user wants to continue
+    goto backtofirst; // repeat the process of accepting a number from the user.
+    else // if user doesn't want to continue
     std::cout<<"Thank you for using this program!"<<std::endl;
     return 0;
 }
